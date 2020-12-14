@@ -1,0 +1,46 @@
+body
+{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #41b3a3;
+	color: #dbe6e5;
+	font-size: 100%;
+}
+
+a
+{
+	color: #adcac7;
+	/* text-decoration: none; */
+}
+
+img
+{
+	max-width: 100%;
+}
+
+p
+{
+	font-size: 140%;
+}
+
+#main_div
+{
+	margin: auto;
+	width: 80%;
+	/* text-align: center; */
+}
+
+.content_div
+{
+
+}
+
+.image_div
+{
+	width: 30%;
+	float: left;
+	padding-right: 2%;
+}
+
+.desc_div
+{
+}
