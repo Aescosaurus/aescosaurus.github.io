@@ -21,6 +21,7 @@ img
 p
 {
 	font-size: 140%;
+	text-indent: 40PX;
 }
 
 #main_div
@@ -28,6 +29,13 @@ p
 	margin: auto;
 	width: 80%;
 	/* text-align: center; */
+}
+
+#title_div
+{
+	width: 95%;
+	padding: 0.5%;
+	background-color: #ff652f;
 }
 
 .content_div
