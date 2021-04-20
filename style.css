@@ -16,7 +16,7 @@ a
 img
 {
 	max-width: 100%;
-	border-radius: 5%;
+	/*border-radius: 5%;*/
 }
 
 p
@@ -29,6 +29,8 @@ p
 {
 	margin: auto;
 	width: 80%;
+	/*background-color: #ff652f;*/
+	padding: 2%;
 	/* text-align: center; */
 }
 
@@ -37,6 +39,7 @@ p
 	width: 95%;
 	padding: 0.5%;
 	background-color: #ff652f;
+	/*overflow: auto;*/
 }
 
 .content_div
@@ -46,7 +49,7 @@ p
 
 .image_div
 {
-	width: 30%;
+	width: 700PX;
 	float: left;
 	padding-right: 2%;
 }
