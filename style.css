@@ -34,6 +34,15 @@ p
 	/* text-align: center; */
 }
 
+#landing_div
+{
+	margin: auto;
+	width: 95%;
+	/*background-color: #ff652f;*/
+	padding: 2%;
+	/* text-align: center; */
+}
+
 #title_div
 {
 	width: 95%;
@@ -44,14 +53,13 @@ p
 
 .content_div
 {
-
+	display: flex;
 }
 
 .image_div
 {
 	width: 700PX;
-	float: left;
-	padding-right: 2%;
+	padding-left: 2%;
 }
 
 .desc_div
