@@ -53,16 +53,24 @@ p
 
 .content_div
 {
+	flex-wrap: wrap;
+	flex-direction: row;
 	display: flex;
 }
 
 .image_div
 {
-	width: 700PX;
+	width: 400PX;
 	padding: 1%;
 	margin-left: 2%;
+	margin-top: 2%;
 	background-color: #ff652f;
 	border-radius: 1%;
+}
+
+.image_div img
+{
+	/*width: 99%;*/
 }
 
 .desc_div
