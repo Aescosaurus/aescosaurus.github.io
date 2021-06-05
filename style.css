@@ -25,6 +25,12 @@ p
 	text-indent: 40PX;
 }
 
+button
+{
+	/*background: transparent;
+	border: none;*/
+}
+
 #main_div
 {
 	margin: auto;
@@ -51,6 +57,16 @@ p
 	/*overflow: auto;*/
 }
 
+#demo_div
+{
+	float: left;
+}
+
+#actual_text
+{
+	width: 980PX;
+}
+
 .content_div
 {
 	flex-wrap: wrap;
@@ -75,4 +91,13 @@ p
 
 .desc_div
 {
+}
+
+.tall_button
+{
+	float: left;
+	height: 100%;
+	padding-top: 280PX; /* 688 / 2 - 128 / 2 */
+	margin-left: 1%;
+	margin-right: 1%;
 }
