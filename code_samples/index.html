@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../style.css" />
+
+		<title>Code Samples</title>
+	</head>
+	<body>
+		<div id="title_div">
+			<div>
+				<img src="../images/icon.png" height="250px"></img>
+			</div>
+			<div>
+				<h1>Game Designer and Innovator</h1>
+			</div>
+			<h1>
+				<a href="../">Home</a> | 
+				<a href="../games/">My Games</a> | 
+				<a href="../projects_and_leadership/">Projects and Leadership</a> | 
+				<a href="../special_skills/">Special Skills</a> | 
+				<a href="../code_samples/">Code Samples</a> | 
+				<a href="../more_info/">More Info</a> | 
+				<a href="../contact/">Contact</a>
+			</h1>
+		</div>
+
+		<div id="main_div">
+			<!--<pre><code></code></pre>-->
+			<h1>Code Samples</h1>
+			
+			<h3>Functions to check collision with a line and reflect velocity across the normal (from <a href="https://github.com/Aescosaurus/Crystal-Hopper">this repo</a>)</h3>
+			<pre><code>
+bool Player::CheckColl( const Line& l,float& dist ) const
+{
+	const float lenSq = l.GetDiff().GetLengthSq<float>();
+	if( lenSq == 0.0f )
+	{
+		dist = ( pos - l.start ).GetLength<float>();
+	}
+	else
+	{
+		const float t = std::max( 0.0f,std::min( 1.0f,Vec2
+			::Dot( pos - l.start,l.GetDiff() ) / lenSq ) );
+		const Vec2 proj = l.start + ( l.GetDiff() ) * t;
+		dist = ( proj - pos ).GetLength<float>();
+	}
+
+	return( dist < size / 2 );
+}
+
+void Player::CollideWith( const Line& l,float dt )
+{
+	RestoreJump();
+
+	const auto perp = l.GetDiff().GetPerp().GetNormalized();
+	vel = vel - ( perp * ( 2.0f * Vec2::Dot( vel,perp ) ) );
+
+	ClampSpeed();
+	pos += vel * dt * 60.0f;
+
+	if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
+	{
+		ApplyBounceFX();
+	}
+}
+			</code></pre>
+
+			<h3>A class that handles items that can be saved to and loaded from a file (from <a href="https://github.com/Aescosaurus/Upgrade-Parkour">this repo</a>)</h3>
+			<pre><code>
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
+
+[System.Serializable]
+public class LoadableItem
+	:
+	MonoBehaviour
+{
+	void Start()
+	{
+		TryLoadPrefab();
+
+		// Assert.IsTrue( invName.Length > 0 );
+		// Assert.IsTrue( invDesc.Length > 0 );
+	}
+
+	public bool CheckEqual( LoadableItem other )
+	{
+		// Assert.IsTrue( prefabSrc.Length > 0 );
+		// Assert.IsTrue( other.prefabSrc.Length > 0 );
+		// print( prefabSrc + " " + other.prefabSrc );
+		return( prefabSrc == other.prefabSrc );
+	}
+
+	void TryLoadPrefab()
+	{
+		if( prefab == null ) prefab = Resources.Load<GameObject>( prefabSrc );
+	}
+
+	// copy other's data into this
+	public void Copy( LoadableItem other )
+	{
+		prefabSrc = other.prefabSrc;
+		TryLoadPrefab();
+
+		invName = other.invName;
+		invDesc = other.invDesc;
+	}
+
+	// swaps this's data with other
+	public void Swap( LoadableItem other )
+	{
+		var tempPrefSrc = prefabSrc;
+		prefabSrc = other.prefabSrc;
+		other.prefabSrc = tempPrefSrc;
+
+		var tempPrefab = prefab;
+		prefab = other.prefab;
+		other.prefab = tempPrefab;
+
+		var tempName = invName;
+		invName = other.invName;
+		other.invName = tempName;
+
+		var tempDesc = invDesc;
+		invDesc = other.invDesc;
+		other.invDesc = tempDesc;
+	}
+
+	public void Clear()
+	{
+		prefabSrc = "";
+		prefab = null;
+	}
+
+	public void RandomToss()
+	{
+		var body = GetComponent<Rigidbody>();
+
+		var randMove = Vector3.up;
+		randMove.x += Random.Range( -1.0f,1.0f ) * flyDev;
+		randMove.y += Random.Range( -1.0f,1.0f ) * flyDev;
+		randMove.z += Random.Range( -1.0f,1.0f ) * flyDev;
+
+		body.AddForceAtPosition( randMove * jumpForce,transform.position + Vector3.down );
+	}
+
+	public GameObject GetPrefab()
+	{
+		TryLoadPrefab();
+		return( prefab );
+	}
+
+	public string GetSrc()
+	{
+		return( prefabSrc );
+	}
+
+	public string GetInvName()
+	{
+		return( invName );
+	}
+
+	public string GetInvDesc()
+	{
+		return( invDesc );
+	}
+
+	[SerializeField] string prefabSrc = "";
+	GameObject prefab = null;
+	[SerializeField] string invName = "";
+	[SerializeField] string invDesc = "";
+
+	[SerializeField] float jumpForce = 400.0f;
+	[SerializeField] float flyDev = 0.2f;
+}
+			</code></pre>
+			
+			<h3>Step function for training mode of QTable AI (from <a href="https://github.com/Aescosaurus/CRASH-AI-CS-3030">this repo</a>)</h3>
+			<pre><code>
+# Initialize state.
+info = self.env.step(self.last_action, tilemap)
+state = info[0]
+reward = info[1]
+action = 0
+
+# Decide whether or not to try something new.
+if random.uniform(0.0, 1.0) < epsilon:
+	action = self.env.get_sample_action()
+else:
+	action = np.argmax(self.q_table[state])
+
+# Run step action.
+step_info = self.env.step(action, tilemap)
+next_state = step_info[0]
+# reward = step_info[1]
+
+# Modify Q_Table.
+old_value = self.q_table[state, self.last_action]
+next_max = np.max(self.q_table[next_state])
+
+new_value = ((1.0 - alpha) * old_value) + \
+			(alpha * (reward + gamma * next_max))
+
+self.q_table[state, self.last_action] = new_value
+self.state = next_state
+
+self.last_action = action
+
+return( reward )
+			</code></pre>
+
+			<h3>Snippet from update function handling different object interactions (from <a href="https://github.com/Aescosaurus/AescEngine">this repo</a>)</h3>
+			<pre><code>
+if( this.curObj >= 0 && !this.modMap.active && !this.textIn.open )
+{
+	this.modMap.active = this.objs[this.curObj].Update( mouse,kbd,this.objs,this.cam )
+}
+
+if( ( mouse.uniqueLeft && this.createObjButton.Contains( mouse.x,mouse.y ) ) ||
+	( Hotkeys.Check( this.createObjHotkey ) && !this.textIn.open ) )
+{
+	if( this.objs.length < 9 )
+	{
+		this.objs.push( new ObjectClass( this.gfx ) )
+		this.textIn.Open()
+		kbd.lastKey = '' // Dangerous!
+		this.curObj = this.objs.length - 1
+		this.ReorderObjs()
+	}
+}
+else if( ( ( mouse.uniqueLeft && this.destroyObjButton.Contains( mouse.x,mouse.y ) ) ||
+	Hotkeys.Check( this.destroyObjHotkey ) ) &&
+	this.objs.length > 0 && !this.textIn.open )
+{
+	this.objs.splice( this.curObj,1 )
+	--this.curObj
+	this.ReorderObjs()
+}
+			</code></pre>
+		</div>
+	</body>
+</html>
