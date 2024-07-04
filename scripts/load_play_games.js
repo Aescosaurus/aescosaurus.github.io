@@ -6,6 +6,7 @@ embed_link_list =
 	'<iframe frameborder="0" src="https://itch.io/embed-upload/2597643?color=caa05a" allowfullscreen="" width="900" height="560"><a href="https://aescosaurus.itch.io/on-the-rails">Play On the Rails on itch.io</a></iframe>',
 	'<iframe frameborder="0" src="https://itch.io/embed-upload/2462744?color=90ff8b" allowfullscreen="" width="980" height="688"><a href="https://aescosaurus.itch.io/laggy-racing">Play Laggy Racing on itch.io</a></iframe>',
 	'<iframe frameborder="0" src="https://itch.io/embed-upload/1763279?color=321434" allowfullscreen="" width="960" height="560"><a href="https://aescosaurus.itch.io/space-force">Play S.P.A.C.E. Force on itch.io</a></iframe>',
+	'<iframe frameborder="0" src="https://itch.io/embed-upload/10837284?color=6a6997" allowfullscreen="" width="960" height="560"><a href="https://aescosaurus.itch.io/space-tether">Play Space Tether on itch.io</a></iframe>',
 ]
 
 title_list =
@@ -15,7 +16,8 @@ title_list =
 	'<a href="https://aescosaurus.itch.io/really-zoomed-in-dungeon">Really Zoomed-in Dungeon</a>',
 	'<a href="https://aescosaurus.itch.io/on-the-rails">On the Rails</a>',
 	'<a href="https://aescosaurus.itch.io/laggy-racing">Laggy Racing</a>',
-	'<a href="https://aescosaurus.itch.io/space-force">S.P.A.C.E. Force</a>'
+	'<a href="https://aescosaurus.itch.io/space-force">S.P.A.C.E. Force</a>',
+	'<a href="https://aescosaurus.itch.io/space-tether">Space Tether</a>',
 ]
 
 desc_list=
@@ -26,11 +28,12 @@ desc_list=
 	`Top down local co-op puzzle game about rearranging train tracks. Made in JavaScript in a few days for Multiplayer Jam with the theme of desert. (<a href="https://github.com/Aescosaurus/On-the-Rails">Link to repo</a>)`,
 	`Racing game made in Unity for GMTK Jam 2020 with the theme Out of Control. For this game I designed a different AI to drive each of 8 cars. (<a href="https://github.com/Aescosaurus/Laggy-Racing">Link to repo</a>)`,
 	`Made in a week for UDC Jam 11, with the theme being Space. As I was working with a teammate we used Unity. This project required a lot of AI work for each of the three bosses and their multiple phases. (<a href="https://github.com/Aescosaurus/S.P.A.C.E.-Force">Link to repo</a>)`,
+	`A precision platformer with puzzles based around navigating obstacles while staying within range of your tether. Features a custom level editing system and level loader with various puzzle elements. This project focused heavily on level design, and introducing new mechanics to the player organically.`,
 ]
 
 embed_order =
 [
-	0,3,1,5,4,2
+	6,0,3,1,5,4,2
 ]
 
 let cur_item = 0
